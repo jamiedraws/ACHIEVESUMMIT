@@ -1,0 +1,23 @@
+@mixin portrait {
+    @media all and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin landscape {
+    @media all and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin portrait-sm {
+    @media all and (orientation: portrait) and (max-width: 320px) {
+        @content;
+    }
+}
+
+@mixin landscape-lg {
+    @media all and (orientation: landscape) and (min-width: 600px) {
+        @content;
+    }
+}

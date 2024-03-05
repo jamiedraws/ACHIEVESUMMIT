@@ -1,0 +1,144 @@
+@import 'extend';
+@import 'animation-fade';
+@import 'animation-rotate';
+
+@include fade-in;
+@include fade-out;
+@include rotate-cycle;
+
+$theme-progress : (
+    default : #252525,
+    success : #7ac142
+);
+
+$curve-success: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+$curve-load: cubic-bezier(0.6, 0.2, 0.1, 0.6);
+
+@include keyframes ( progress-stroke-tailchase ) {
+    0% {
+        stroke-dasharray: 1,200;
+        stroke-dashoffset: 0
+    }
+
+    50% {
+        stroke-dasharray: 89,200;
+        stroke-dashoffset: -60
+    }
+
+    100% {
+        stroke-dasharray: 89,200;
+        stroke-dashoffset: -166
+    }
+}
+
+@include keyframes ( progress-stroke ) {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@include keyframes ( progress-scale ) {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@include keyframes ( progress-fill ) {
+    100% {
+        box-shadow: inset 0 0 0 3em #{map-get($theme-progress, success)};
+    }
+}
+
+@mixin set-progress (  $conf-progress : () ) {
+    $conf-progress : extend(
+        (
+            size : 3em,
+            fill : false,
+            stroke : map-get($theme-progress, default),
+            iterate : 30,
+            delay : .1,
+            ondemand : false
+        ), $conf-progress
+    );
+    
+    $duration : 2;
+    $iterate : map-get($conf-progress, iterate);
+    $timeout : $duration * $iterate / 1.1;
+
+    $stroke : map-get($conf-progress, stroke);
+    $fill : map-get($conf-progress, fill);
+
+    .progress {
+        width: 3em;
+        height: 3em;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: none;
+        stroke-miterlimit: 10;
+        box-shadow: inset 0 0 0 transparent;
+
+        will-change: transform;
+        contain: strict;
+    
+        &__group {
+            opacity: 0;
+            $animation : 
+                fade-in #{map-get($conf-progress, delay)}s ease-in forwards,
+                rotate-cycle #{$duration}s #{$curve-load} #{$iterate} #{map-get($conf-progress, delay)}s forwards,
+                fade-out #{map-get($conf-progress, delay)} ease-in #{$timeout}s forwards;
+        
+            @include vendor-rule (transform-origin, center center);
+            @include vendor-rule (animation, $animation);
+        }
+
+        &__load {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 60;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #{$stroke};
+            fill: none;
+            @include vendor-rule (animation, progress-stroke-tailchase 1.5s $curve-success infinite);
+        }
+        
+        &__checkmark {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+        }
+
+        &__load,
+        &__checkmark {
+            transition: stroke .3s ease-in-out;
+        }
+    }
+
+    .view__progress--success {
+        .progress {
+            $animation : 
+                progress-fill .4s ease-in-out .4s forwards, 
+                progress-scale .3s ease-in-out .9s both;
+            @include vendor-rule (animation, $animation);
+        }
+
+        .progress__group {
+            @include vendor-rule (animation, unset);
+            transform: rotate(0);
+            opacity: 1;
+        }
+
+        .progress__load {
+            stroke: #{map-get($theme-progress, success)};
+            @include vendor-rule (animation, progress-stroke .6s $curve-success forwards);
+        }
+
+        .progress__checkmark {
+            @include vendor-rule (animation, progress-stroke .3s $curve-success .8s forwards);
+            stroke: white;
+        }
+    }
+}

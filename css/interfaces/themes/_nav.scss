@@ -1,0 +1,70 @@
+@import "../utilities/media-queries";
+
+@mixin nav {
+    .l-nav {
+        &__in {
+            justify-content: space-between;
+        }
+    
+        &__group {
+            display: flex;
+            justify-content: flex-start;
+            padding: 0.5em 0;
+        }
+    }
+}
+
+@mixin dtm-nav {
+    .dtm {
+        &__in {
+            &--dv {
+                .l-nav {
+                    &__in {
+                        justify-content: space-between;
+                    }
+                }
+            }
+            &--mv {
+                .l-nav {
+                    &__group {
+                        justify-content: space-between;
+                        flex: 1;
+                    }
+
+                    &__order-bundle {
+                        width: 100%;
+                        padding: 0 0.5em;
+                    }
+
+                    @include landscape {
+                        &__group {
+                            flex: 0 1 100px;
+                        }
+
+                        &__order-bundle {
+                            flex: 1;
+                        }
+
+                        a {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .dtm {
+        & &__in {
+            &--mv {
+                @include landscape {
+                    .l-nav {
+                        &__in {
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

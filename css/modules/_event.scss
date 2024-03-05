@@ -1,0 +1,66 @@
+@import "../utils/extend";
+@import "../states/views";
+@import "../states/media-queries";
+
+@mixin event ($model: ()) {
+    $model: extend(
+        (
+            font: "Helvetica",
+            foreground: black,
+            background: white,
+            alternate-background: white
+        ), $model);
+
+    .event {
+        text-transform: uppercase;
+
+        &__item:nth-child(even) &__title {
+            background: #{map-get($model, alternate-background)};
+        }  
+
+        &__title {
+            color: #{map-get($model, foreground)};
+            background: #{map-get($model, background)};
+
+            &__text {
+                font: bold 25px/1.25 #{map-get($model, font)}, sans-serif;
+                text-transform: uppercase;
+            }
+        }
+
+        &__standfirst {
+            font-size: 1.5rem;
+        }
+
+        &__button {
+            margin-top: 1rem;
+        }
+
+        .root__link {
+            font-size: 1.2rem;
+            font-weight: 100;
+            display: block;
+            margin: 1em 0;
+        }
+
+        @content;
+    }
+}
+
+@include for-mobile {
+    .event {
+        @include portrait {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    
+        @include landscape {
+            font-size: 1.5vw;
+    
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+@mixin hideCheckout {
+    opacity: 0;
+    transform: translateX(10%);
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+}
+
+@mixin showCheckout {
+    opacity: 1;
+    transform: translateX(0);
+}

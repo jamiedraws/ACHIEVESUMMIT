@@ -1,0 +1,15 @@
+@mixin transition-background {
+    transition: background .2s ease-in-out;
+}
+
+@mixin observe {
+    opacity: 0;
+    transition: opacity .7s ease-in-out, transform .7s ease-in-out;
+    @content;
+}
+
+@mixin observe-ready {
+    transform: translate(0);
+    opacity: 1;
+    @content;
+}

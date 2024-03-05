@@ -1,0 +1,388 @@
+@font-face {
+  font-family: "Avenir Next";
+  font-display: swap;
+  src: url(/Shared/webfonts/avenir-next/regular/AvenirNext-Regular.woff2) format("woff2"), url(/Shared/webfonts/avenir-next/regular/AvenirNext-Regular.woff) format("woff");
+}
+@font-face {
+  font-family: "Avenir Next Bold";
+  font-display: swap;
+  src: url(/Shared/webfonts/avenir-next/bold/AvenirNext-Bold.woff2) format("woff2"), url(/Shared/webfonts/avenir-next/bold/AvenirNext-Bold.woff) format("woff");
+}
+@font-face {
+  font-family: "Avenir Next Demi Bold";
+  font-display: swap;
+  src: url(/Shared/webfonts/avenir-next/demi-bold/AvenirNext-DemiBold.woff) format("woff");
+}
+@font-face {
+  font-family: "DIN Bold";
+  font-display: swap;
+  src: url(/Shared/webfonts/din/bold/DIN-Bold.woff) format("woff");
+}
+@media all and (-ms-high-contrast: none) {
+  *::-ms-backdrop, .bundle__divide::before {
+    display: none;
+  }
+}
+.dtm__in .button {
+  font-size: 2.7rem;
+  padding: 0.15em 1em;
+}
+
+.dtm__in--mv .l-header img {
+  display: block;
+}
+@media all and (orientation: landscape) {
+  .dtm__in--mv .l-header > .l-header__in {
+    display: none;
+  }
+}
+@media all and (orientation: portrait) {
+  .dtm__in--mv .l-header--fixed + .l-outer {
+    padding-top: 32vw;
+  }
+}
+@media all and (orientation: landscape) {
+  .dtm__in--mv .l-header--fixed + .l-outer {
+    padding-top: 10vw;
+  }
+}
+.dtm__in--dv .l-header--fixed + .l-outer {
+  padding-top: 185px;
+}
+
+.dtm > .dtm__in .l-header--fixed {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  max-width: none;
+}
+
+.l-nav__in {
+  justify-content: space-between;
+}
+.l-nav__group {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5em 0;
+}
+
+.dtm__in--dv .l-nav__in {
+  justify-content: space-between;
+}
+.dtm__in--mv .l-nav__group {
+  justify-content: space-between;
+  flex: 1;
+}
+.dtm__in--mv .l-nav__order-bundle {
+  width: 100%;
+  padding: 0 0.5em;
+}
+@media all and (orientation: landscape) {
+  .dtm__in--mv .l-nav__group {
+    flex: 0 1 100px;
+  }
+  .dtm__in--mv .l-nav__order-bundle {
+    flex: 1;
+  }
+  .dtm__in--mv .l-nav a {
+    font-size: 1.2rem;
+  }
+}
+
+@media all and (orientation: landscape) {
+  .dtm .dtm__in--mv .l-nav__in {
+    justify-content: flex-start;
+  }
+}
+
+.bundle {
+  text-align: center;
+  margin: 2rem 0 5rem;
+}
+.bundle__group {
+  display: flex;
+}
+.bundle__item {
+  flex: 1 1 50%;
+  position: relative;
+}
+.bundle__divide {
+  padding-left: 1rem;
+}
+.bundle__divide::before, .bundle__divide::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bundle__divide::before {
+  content: "";
+  height: 100%;
+  width: 2px;
+  background: #636363;
+}
+.bundle__divide::after {
+  font-family: Avenir Next Demi Bold;
+  content: "or";
+  color: #636363;
+  margin: 0 0 0 -0.55em;
+  font-size: 1em;
+  padding: 0.15em 0.15em 0.3em;
+  border-radius: 100%;
+  background: #e9f6ff;
+  top: 38%;
+}
+
+.dtm__in--mv .bundle {
+  margin-top: 0;
+  z-index: 3;
+  position: relative;
+  background: linear-gradient(#d6edfe 0%, #d6edfe 60%, rgba(255, 255, 255, 0) 100%);
+}
+@media all and (orientation: portrait) {
+  .dtm__in--mv .bundle {
+    margin: 1rem 0 0;
+    margin-bottom: -38vw;
+  }
+  .dtm__in--mv .bundle__divide::after {
+    top: 44%;
+  }
+}
+@media all and (orientation: landscape) {
+  .dtm__in--mv .bundle {
+    margin-bottom: -24rem;
+  }
+}
+.dtm__in--dv .bundle {
+  width: 415px;
+}
+
+.banner {
+  background: #31aeb1;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font: 2.2rem DIN Bold, sans-serif;
+  width: 80%;
+  margin: 1rem auto;
+  position: relative;
+}
+.banner--ribbon::before, .banner--ribbon::after, .banner--ribbon > div::before, .banner--ribbon > div::after {
+  content: "";
+  position: absolute;
+  width: 1em;
+  border-style: solid;
+}
+.banner--ribbon::before, .banner--ribbon > div::before {
+  left: -1.5em;
+}
+.banner--ribbon::after, .banner--ribbon > div::after {
+  right: -1.5em;
+}
+.banner--ribbon::before {
+  border-color: transparent #31aeb1 transparent transparent;
+  border-width: 1em 0.5em 0 0;
+  bottom: 0;
+}
+.banner--ribbon::after {
+  border-color: transparent transparent transparent #31aeb1;
+  border-width: 1em 0 0 0.5em;
+  bottom: 0;
+}
+.banner--ribbon > div::before {
+  border-color: transparent #31aeb1 transparent transparent;
+  border-width: 0 0.5em 1em 0;
+  top: 0;
+}
+.banner--ribbon > div::after {
+  border-color: transparent transparent transparent #31aeb1;
+  border-width: 0 0 1em 0.5em;
+  top: 0;
+}
+
+@media all and (orientation: portrait) {
+  .dtm__in--mv .banner {
+    padding: 0.5rem;
+    font-size: 1.7rem;
+  }
+}
+
+.order {
+  display: inline-flex;
+  flex-flow: column wrap;
+  align-items: center;
+  position: relative;
+  color: #2363ad;
+}
+.order--row {
+  flex-direction: row;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  border-radius: 1rem;
+  margin: 0;
+}
+.order--row:not(:first-child) {
+  margin-left: 1rem;
+}
+.order--row .order__item {
+  padding: 0.5em;
+  margin: 0;
+  color: inherit;
+}
+.order--row .order__item a {
+  display: flex;
+  padding: 0.75em 1em;
+  align-items: center;
+  height: 100%;
+}
+
+.dtm__in--mv .offer-area {
+  background: #ededed;
+}
+.dtm__in--mv .offer-area__price .offer__group--top {
+  margin-top: 0;
+  z-index: 3;
+  position: relative;
+  background: linear-gradient(#d6edfe 0%, #d6edfe 60%, rgba(255, 255, 255, 0) 100%);
+}
+.dtm__in--mv .order--row {
+  flex: 1 1 100px;
+}
+@media all and (orientation: portrait) {
+  .dtm__in--mv .order--row .offer--product {
+    font-size: 0.6rem;
+  }
+}
+.dtm__in--mv .order--row .order__item {
+  flex: 1;
+  padding: 0.5em 0.25em;
+  text-align: center;
+}
+.dtm__in--mv .order--row .order__item .btn {
+  width: 100%;
+}
+@media all and (orientation: portrait) {
+  .dtm__in--mv .order--row .order__item .btn {
+    padding: 0.5em;
+  }
+}
+@media all and (orientation: portrait) and (max-width: 320px) {
+  .dtm__in--mv .order--row .order__item .btn {
+    font-size: 1.3rem;
+  }
+}
+@media all and (orientation: landscape) {
+  .dtm__in--mv .order--row .order__item .btn {
+    font-size: 1.15rem;
+  }
+}
+.dtm__in--mv .order--row .order__item:first-child {
+  flex: 1.3;
+}
+
+.offer--product {
+  display: inline-block;
+  font: 1.5rem/1 Avenir Next Bold, sans-serif;
+  text-align: center;
+}
+.offer--product .offer__txt {
+  font-family: Avenir Next Demi Bold;
+  font-size: 1em;
+}
+.offer--product .offer__price {
+  letter-spacing: -3px;
+}
+.offer--product .offer__txt + .offer__price {
+  margin-top: 0.5em;
+}
+.offer--product .offer__currency,
+.offer--product .offer__cent {
+  font-size: 2.5em;
+}
+.offer--product .offer__amt {
+  line-height: 0.9;
+  letter-spacing: -3px;
+}
+.offer--product .offer__cent {
+  letter-spacing: 0;
+}
+.offer__txt {
+  color: currentColor;
+}
+.offer--primary .offer__txt {
+  color: #636363;
+}
+.offer--mini {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+@media all and (orientation: portrait) {
+  .dtm__in--mv .offer--product {
+    font-size: 1.1rem;
+  }
+  .dtm__in--mv .offer__desc {
+    max-width: 18rem;
+    margin: 0.5rem auto;
+    font-size: 0.6em;
+  }
+}
+.dtm__in--mv .offer--product .offer__price {
+  letter-spacing: 0px;
+}
+@media all and (orientation: landscape) {
+  .dtm__in--mv .offer--mini {
+    font-size: 0.75rem;
+  }
+  .dtm__in--mv .offer--mini .offer__amt {
+    font-size: 3.5em;
+  }
+}
+@media all and (orientation: landscape) and (min-width: 600px) {
+  .dtm__in--mv .offer--mini {
+    font-size: 0.9rem;
+  }
+}
+
+.btn--rect {
+  padding: 0.75em;
+}
+
+@media all and (orientation: portrait) {
+  .dtm__in--mv .btn--rect {
+    font-size: 0.8em;
+    padding: 0.7em 1em 0.8em;
+  }
+}
+
+.scroll .scroll__order {
+  display: flex;
+  flex-wrap: wrap;
+}
+.scroll--first .scroll__order {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(10%);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, max-height 1s ease-in-out;
+}
+.scroll--last .scroll__order {
+  max-height: 10em;
+  opacity: 1;
+  transform: translateY(0);
+  transition: max-height 1s ease-in-out, opacity 0.3s ease-in-out 0.5s, transform 0.3s ease-in-out 0.5s;
+}
+
+.dtm__in--mv .scroll--last {
+  /*
+  .scroll__order {
+      display: flex;
+      padding-top: 0.5rem;
+      width: 100%;
+  }
+  */
+}
+
+.dtm--subpage .dtm__in--mv .o-box--btn--toggle[title*=Order] {
+  display: none;
+}
+
+/*# sourceMappingURL=offer.css.map */

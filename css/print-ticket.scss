@@ -1,0 +1,67 @@
+@import "models/fonts";
+@import "states/views";
+
+.print-ticket {
+    font: 1.3rem/1.45 #{map-get($fonts, first)}, sans-serif;
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__group--border {
+        border: .8em solid black;
+        align-items: center;
+        margin-bottom: 1em;
+        page-break-before: always;
+    }
+
+    &__group--border > &__item:not(:last-child) {
+        border-right: .8em solid black;
+    }
+
+    &__item {
+        flex: 1 1 auto;
+        padding: 1em;
+    }
+
+    &__entry {
+        margin-bottom: 1em;
+        font-size: 1.3em;
+
+        > strong {
+            text-transform: uppercase;
+        }
+
+        > span {
+            display: block;
+        }
+    }
+
+    &__logo {
+        width: 160pt;
+        margin: 0 auto;
+    }
+}
+
+@include for-desktop {
+    .l-outer__in {
+        max-width: 900px;
+    }
+}
+
+@include for-mobile {
+    .print-ticket {
+        font-size: 1.5vw;
+
+        &__logo {
+            width: 15em;
+        }
+    }
+}
+
+@include for-template {
+    .c-ticket--horz .icon-ticket {
+        font-size: 4em;
+    }
+}

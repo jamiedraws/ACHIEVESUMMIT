@@ -1,0 +1,188 @@
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes rotate-cycle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-cycle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.dtm__in .button {
+  font-size: 2.7rem;
+  padding: 0.15em 1em;
+}
+
+#content_top {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+.loader {
+  transition: opacity 0.2s ease-in-out 1s;
+}
+.loader.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader.is-hidden .loader__animation {
+  animation-play-state: paused;
+}
+.loader__animation {
+  font-size: 5rem;
+  display: block;
+  padding: 2em;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  opacity: 0;
+  will-change: transform;
+  contain: strict;
+  -webkit-animation: fade-in 0.1s ease-in forwards, rotate-cycle 0.7s cubic-bezier(0.6, 0.2, 0.1, 0.6) 60 forwards, fade-out 0.1s ease-in 38.1818181818s forwards;
+  animation: fade-in 0.1s ease-in forwards, rotate-cycle 0.7s cubic-bezier(0.6, 0.2, 0.1, 0.6) 60 forwards, fade-out 0.1s ease-in 38.1818181818s forwards;
+  animation-play-state: paused;
+  background: url("data:image/svg+xml;charset=utf8,    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'%3E        %3Cpath stroke='none' d='M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50' fill='hsla(0deg, 0%25, 14.5098039216%25, 1)'%3E%3C/path%3E    %3C/svg%3E") no-repeat center center;
+  background-size: 3em;
+  width: 3em;
+  height: 3em;
+  animation-play-state: running;
+}
+
+.c-payment {
+  position: relative;
+}
+.c-payment__group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.c-payment__item {
+  flex: 1 1;
+}
+.c-payment .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  margin: auto;
+  background: white;
+}
+
+.dtm__in--mv .c-payment {
+  padding: 1rem 0;
+}
+.dtm__in--mv .c-payment__group {
+  flex-direction: column;
+}
+.dtm__in--mv .c-payment .loader {
+  align-items: flex-start;
+}
+.dtm__in--dv .c-payment {
+  padding: 1rem;
+  min-height: 35em;
+}
+.dtm__in--dv .c-payment__item {
+  padding: 1rem;
+  flex: 1 1 300px;
+}
+.dtm__in--dv .c-payment__divide::before {
+  margin-right: 2rem;
+}
+.dtm__in--dv .c-payment__divide {
+  position: relative;
+  display: flex;
+}
+.dtm__in--dv .c-payment__divide::before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: #ccc;
+  top: 0;
+  display: inline-block;
+}
+.dtm__in--dv .c-payment__divide--group {
+  flex: 1;
+}
+
+.btn--continue {
+  background: #cb2121;
+  text-shadow: none;
+  padding: 0.7em 3em;
+  font-size: 1.9rem;
+}
+.btn--continue:hover, .btn--continue:focus {
+  background: #810c0c;
+  transition: background 0.25s;
+}
+
+.dtm__in--dv #paypal-button {
+  max-width: 50%;
+}
+
+.c-brand--form .c-brand--form__terms {
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin: auto;
+}
+
+.c-brand--form__terms {
+  max-width: 40em;
+  text-align: left;
+}
+.c-brand--form__terms label {
+  display: flex;
+  align-items: flex-start;
+}
+.c-brand--form__terms .eflex-checkmark__svg {
+  flex: 0 0 20px;
+  margin-right: 0.75em;
+}
+.c-brand--form__terms label:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+/*# sourceMappingURL=payment-form.css.map */

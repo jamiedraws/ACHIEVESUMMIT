@@ -1,0 +1,104 @@
+@import "../utilities/extend";
+@import "../utilities/media-queries";
+
+@mixin bundle ( $bundle : () ) {
+    $bundle: extend(
+        (
+            font-name: 'Helvetica'
+        ), $bundle
+    );
+
+    .bundle {
+        text-align: center;
+        margin: 2rem 0 5rem;
+
+        &__group {
+            display: flex;
+        }
+
+        &__item {
+            flex: 1 1 50%;
+            position: relative;
+        }
+
+        &__divide {
+            padding-left: 1rem;
+
+            &::before,
+            &::after {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            &::before {
+                content: "";
+                height: 100%;
+                width: 2px;
+                background: #636363;
+            }
+
+            &::after {
+                font-family: #{map-get($bundle, font-name)};
+                content: "or";
+                color: #636363;
+                margin: 0 0 0 -0.55em;
+                font-size: 1em;
+                padding: 0.15em 0.15em 0.3em;
+                border-radius: 100%;
+                background: #e9f6ff;
+                top: 38%;
+            }
+        }
+    }
+}
+
+@mixin dtm-bundle {
+    .dtm {
+        &__in {
+            &--mv {
+
+                .bundle {
+                    margin-top: 0;
+                    z-index: 3;
+                    position: relative;
+                    background: linear-gradient(#d6edfe 0%, #d6edfe 60%, rgba(255, 255, 255, 0) 100%);
+                }
+
+                @include portrait {
+                    .bundle {
+                        margin: 1rem 0 0;
+                        margin-bottom: -38vw;
+
+                        &__divide {
+                            &::after {
+                                top: 44%;
+                            }
+                        }
+                    }
+                }
+
+                @include landscape {
+                    .bundle {
+                        margin-bottom: -24rem;
+                    }
+                }
+
+            }
+
+            &--dv {
+
+                .bundle {
+                    width: 415px;
+                }
+
+            }
+        }
+    }
+}
+
+@media all and (-ms-high-contrast:none) {
+    *::-ms-backdrop, .bundle__divide::before {
+           display: none;
+       }
+}

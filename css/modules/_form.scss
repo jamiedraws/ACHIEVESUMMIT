@@ -1,0 +1,95 @@
+@import "../utils/extend";
+@import "../states/views";
+
+@mixin form ($model: ()) {
+    $model: extend(
+        (
+            font: "Helvetica",
+            foreground: black,
+            background: white
+        ), $model);
+
+    .form {
+        background: white;
+
+        &__title {
+            background: #{map-get($model, background)};
+            color: #{map-get($model, foreground)};
+            text-align: center;
+        
+            &__text {
+                font: bold 25px/1.25 #{map-get($model, font)}, sans-serif;
+                text-transform: uppercase;
+            }
+        }
+
+        &__header {
+            text-align: center;
+            text-transform: uppercase;
+            font: bold 2.5rem/1 #{map-get($model, font)} ,sans-serif;
+            margin: 0 0 3rem;
+            padding: 1.8rem;
+            background: #{map-get($model, background)};
+            color: white;
+
+            display: block;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 0;
+            position: relative;
+
+            &::before,
+            &::after {
+                content: '';
+                width: 0;
+                height: 0;
+                left: 50%;
+                bottom: auto;
+                top: 100%;
+                border: solid transparent;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            &::before {
+                border-width: 23px;
+                margin-left: -23px;
+                border-top-color: transparent;
+                border-bottom-color: transparent;
+            }
+
+            &::after {
+                border-width: 20px;
+                margin-left: -20px;
+                border-bottom-color: transparent;
+                border-top-color: inherit;
+            }
+        }
+        
+        &__header span:not(.form__standfirst) {
+            display: block
+        }
+        
+        &__highlight {
+            font-size: 1.15em;
+            margin: .15em 0 0
+        }
+
+        @content;
+    }
+
+    @include for-desktop {
+        .form {
+            width: auto;
+        }
+    }
+
+    @include for-template {
+        .form {
+            &__header {
+                border-color: #{map-get($model, background)};
+                border-radius: 1.5rem
+            }
+        }
+    }
+}

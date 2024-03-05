@@ -1,0 +1,79 @@
+.c-phase {
+  text-align: center;
+  line-height: 1.45;
+}
+.c-phase__header {
+  background: #31aeb1;
+  padding: 2rem 1rem;
+  color: white;
+  display: block;
+}
+.c-phase__status {
+  flex: 1 1 5em;
+  text-align: center;
+  margin: 0;
+  position: relative;
+}
+.c-phase__status figcaption {
+  margin: 1rem auto;
+  font-size: 1.4rem;
+  width: 6em;
+  word-break: break-word;
+}
+.c-phase__circle {
+  background: #2262ac;
+  color: white;
+  border-radius: 100%;
+  display: inline-flex;
+  justify-content: center;
+  padding: 1em;
+}
+.c-phase__circle img {
+  display: block;
+  width: 3em;
+  height: 3em;
+}
+.c-phase__group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 70%;
+  font-size: 1.3rem;
+  position: relative;
+}
+.c-phase__group::before {
+  content: "";
+  position: absolute;
+  top: 2.5em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #acacac;
+  width: 70%;
+  height: 0.35em;
+  z-index: 0;
+}
+
+.dtm .c-phase hr {
+  margin: 0;
+}
+.dtm .c-phase__group {
+  margin: 2rem 0;
+}
+.dtm .c-phase__header {
+  padding: 2rem 1rem;
+}
+.dtm .c-phase__header .c-brand__headline {
+  font-size: 1.5em;
+}
+.dtm__in--mv .c-phase__group {
+  width: 100%;
+  font-size: 1rem;
+}
+.dtm__in--mv .c-phase__status figcaption {
+  font-size: 1rem;
+}
+
+/*# sourceMappingURL=order-progress.css.map */

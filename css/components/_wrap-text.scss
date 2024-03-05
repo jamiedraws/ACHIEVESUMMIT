@@ -1,0 +1,5 @@
+@mixin wrap-text {
+    > span {
+        display: block;
+    }
+}

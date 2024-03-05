@@ -1,0 +1,14 @@
+.header {
+    text-align: center;
+    
+    &__logo {
+        width: 220px;
+        margin: 1rem auto;
+    }
+}
+
+.dtm__in--mv {
+    .header__logo {
+        max-width: 7em;
+    }
+}

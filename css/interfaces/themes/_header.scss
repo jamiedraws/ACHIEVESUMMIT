@@ -1,0 +1,50 @@
+@import "../utilities/media-queries";
+
+@mixin header {
+
+}
+
+@mixin dtm-header {
+    .dtm {
+        &__in {
+            &--mv {
+                .l-header img {
+                    display: block;
+                }
+                
+                @include landscape {
+                    .l-header > .l-header__in {
+                        display: none;
+                    }
+                }
+
+                .l-header--fixed + .l-outer {
+                    @include portrait {
+                        padding-top: 32vw;
+                    }
+
+                    @include landscape {
+                        padding-top: 10vw;
+                    }
+                }
+            }
+    
+            &--dv {
+                .l-header--fixed + .l-outer {
+                    padding-top: 185px;
+                }
+            }
+        }
+    }
+
+    .dtm {
+        & > &__in {
+            .l-header--fixed {
+                position: fixed;
+                z-index: 10;
+                width: 100%;
+                max-width: none;
+            }
+        }
+    }
+}

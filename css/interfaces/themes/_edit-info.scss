@@ -1,0 +1,23 @@
+@mixin edit-info {
+    [data-edit-address-link] {
+        color: #2363ad;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+@mixin dtm-edit-info {
+    .dtm {
+        &__in {
+            &--dv {
+                .c-brand--address {
+                    padding: 0 0.5rem;
+                }
+
+                .c-brand--edit {
+                    margin: 1rem 0;
+                }
+            }
+        }
+    }
+}

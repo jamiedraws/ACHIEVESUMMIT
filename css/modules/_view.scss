@@ -1,0 +1,12 @@
+@mixin view ($width: 1000px) {
+    .view {
+        min-width: $width;
+
+        &__in {
+            max-width: $width;
+            margin: auto;
+        }
+
+        @content;
+    }
+}

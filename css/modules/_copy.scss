@@ -1,0 +1,260 @@
+@import "../utils/extend";
+@import "../states/views";
+@import "../states/transition";
+
+@mixin copy ($model: ()) {
+    $model: extend(
+        (
+            font: "Helvetica",
+            color: black
+        ), $model
+    );
+    
+    $font: map-get($model, font);
+    $color: map-get($model, color);
+
+    .copy {
+        $this: &;
+
+        font: 2.5rem/1.25 #{$font}, sans-serif;
+
+        h2,
+        h3 {
+            margin-bottom: 0.25em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        h2 {
+            font-size: 7rem;
+            text-transform: uppercase;
+
+            sub {
+                bottom: 0;
+            }
+        }
+
+        h3 {
+            font-size: 3rem;
+        }
+
+        p:not(:last-child) {
+            margin-bottom: 0.75em;
+        }
+
+        h3 + ul {
+            margin-top: 0.75em;
+        }
+
+        ul {
+            margin-bottom: 0.75em;
+            list-style-type: none;
+        }
+
+        li {
+            padding: 0 0 1.25em;
+        }
+
+        &--title {
+            text-align: center;
+        }
+
+        &__frame {
+            margin: 1em 0;
+        }
+
+        &--list {
+            text-align: left;
+                    
+            h2 {
+                font-size: 4rem;
+            }
+
+            li {
+                display: flex;
+                align-items: flex-start;
+                font-size: 1.8rem;
+                padding-bottom: 0.75em;
+
+                &::before {
+                    $offset-top: 0.5 / 1.5;
+                    $size: 0.5em;
+
+                    content: "";
+                    width: #{$size};
+                    height: #{$size};
+                    flex: 0 0 #{$size};
+                    border-radius: 100%;
+                    margin-right: #{$size};
+                    margin-top: #{$offset-top}em;
+
+                    background: #{map-get($colors, second)};
+                }
+            }
+        }
+
+        @content;
+    }
+
+    @include for-mobile {
+        .copy {
+            &__image-wrap-text {
+                @include portrait {
+                    width: 65%;
+                }
+                
+                @include landscape {
+                    width: 35%;
+                }
+            }
+        }
+    }
+}
+
+@mixin copy--icons ($model: ()) {
+    $model: extend((
+        background: black,
+        color-header: black,
+        color-desc: black
+    ), $model);
+
+    .copy {
+        & + & {
+            margin-top: 1em;
+        }
+        
+        &--icons {
+            text-align: center;
+        }
+    
+        &__group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @supports (display: flex) {
+            .observe {
+                figure {
+                    @include observe{
+                        transform: translateY(2em);
+                    };
+    
+                    &:nth-child(2) {
+                        transition-delay: .5s;
+                    }
+    
+                    &:nth-child(3) {
+                        transition-delay: 1s;
+                    }
+                }
+            }
+    
+            .observe-ready {
+                figure {
+                    @include observe-ready;
+                }
+            }
+        }
+    
+        & + hr {
+            height: 3px;
+            margin: 2.5em 0;
+        }
+    
+        figure {
+            margin: 1.5em;
+            flex: 1;
+        }
+    
+        picture {
+            display: flex;
+            margin: auto;
+            background: #{map-get($model, background)};
+            border-radius: 100%;
+            overflow: hidden;
+        }
+    
+        picture + figcaption {
+            margin-top: 0.25em;
+        }
+    
+        figcaption {
+            font-size: 5rem;
+            font-weight: bold;
+            line-height: 1;
+            color: #{map-get($model, color-header)};
+    
+            > small {
+                display: block;
+                font-size: 0.5em;
+                color: #{map-get($model, color-text)};
+            }
+        }
+    }
+
+    @include for-desktop {
+        .copy {
+            &--icons p {
+                padding: 0 7em;
+            }
+
+            picture {
+                width: 226px;
+            }
+
+            &--columns {
+                column-count: 2;
+    
+                p {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    @include for-mobile {
+        .copy {
+            h2 {
+                font-size: 4rem;
+            }
+
+            figure {
+                flex: 0 1 30%;
+                margin: 1.5em 0;
+                max-width: 4em;
+            }
+    
+            picture {
+                width: 80%;
+            }
+    
+            picture + figcaption {
+                font-size: 1.5em;
+                margin-top: 0.25em;
+            }
+    
+            @include landscape {
+                &--columns {
+                    column-count: 2;
+
+                    p {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            &__group {
+                justify-content: space-around;
+    
+                @include portrait {
+                    font-size: 2.25rem;
+                }
+    
+                @include landscape {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+}

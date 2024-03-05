@@ -1,0 +1,46 @@
+.copy--speaker h2 {
+    font-size: 5.5rem;
+    font-weight: 900;
+}
+
+.copy--speaker h3 {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+}
+
+.copy--speaker strong {
+    color: inherit;
+}
+
+.copy__list {
+    margin: 3rem;
+}
+
+.copy__list li {
+    padding: 0 0 0.5em;
+    position: relative;
+}
+
+.copy__list li::before {
+    content: "";
+    box-sizing: border-box;
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 100%;
+    background: #f84100;
+    position: absolute;
+    left: -1em;
+    top: 0.40em;
+}
+
+.dtm__in--mv .copy--speaker h2 {
+    font-size: 3.5rem;
+}
+
+.dtm__in--mv .copy--speaker h3 {
+    font-size: 2.75rem;
+}
+
+.dtm__in--mv .group__item--speaker-img {
+    margin: 0 auto;
+}

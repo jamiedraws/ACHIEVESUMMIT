@@ -1,0 +1,50 @@
+@import "config/default";
+@import "interfaces/shopping-cart";
+
+@import "models/colors";
+@import "models/fonts";
+
+$colors: $colors-theme;
+
+@include floating-button;
+
+@include ad-header(
+    (
+        font-name: map-get($fonts, first),
+        background: map-get($colors, first)
+    )
+);
+@include dtm-ad-header;
+
+@include card(
+    (
+        font-name: map-get($primary-fonts, regular),
+        title-font-name: map-get($secondary-fonts, bold-cd),
+        offer-font-name: map-get($primary-fonts, demi-bold),
+        price-font-name: map-get($primary-fonts, bold),
+        title-color: map-get($colors, second),
+        copy-strong-color: map-get($colors, second),
+        color: map-get($colors-default, first)
+    )
+);
+@include dtm-card;
+
+@include cart;
+
+@include button--card;
+@include button--cart(
+    (
+        background: map-get($colors, second)
+    )
+);
+@include button--continue;
+
+@include option;
+@include dtm-option;
+@include optin;
+
+@include summary-review;
+@include dtm-summary-review;
+
+@include edit-info;
+@include dtm-edit-info;

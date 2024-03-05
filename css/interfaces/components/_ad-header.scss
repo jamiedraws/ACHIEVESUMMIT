@@ -1,0 +1,47 @@
+@import "../utilities/extend";
+
+@mixin ad-header ( $ad-header : () ) {
+    $ad-header: extend(
+        (
+            background: #0e529e,
+            font-name: 'Helvetica'
+        ), $ad-header
+    );
+    .ad-header {
+        background: #{map-get($ad-header, background)};
+        color: white;
+        padding: 1.5em 2em;
+        font: 1rem/.9 #{map-get($ad-header, font-name)}, sans-serif;
+        text-align: center;
+        text-transform: uppercase;
+    
+        > h2 {
+            font-size: 4em;
+            font-weight: bold;
+        }
+    
+        small {
+            display: block;
+            font-size: 0.5em;
+            text-transform: capitalize;
+        }
+    }
+}
+
+@mixin dtm-ad-header {
+    .dtm {
+        &__in {
+            &--dv {
+                .ad-header {
+                    margin: 1rem .75rem;
+                }
+            }
+
+            &--mv {
+                .ad-header {
+                    font-size: .8rem;
+                }
+            }
+        }
+    }
+}

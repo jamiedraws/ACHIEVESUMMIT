@@ -1,0 +1,285 @@
+@import "../utilities/extend";
+@import "../utilities/media-queries";
+
+@mixin card ( $card : () ) {
+    $card: extend(
+        (
+            font-name: 'Helvetica',
+            title-font-name: 'Helvetica',
+            offer-font-name: 'Helvetica',
+            price-font-name: 'Helvetica',
+            color: #252525,
+            title-color: #252525,
+            copy-strong-color: #252525
+        ), $card
+    );
+
+    .card {
+        $this: &;
+    
+        display: flex;
+        flex-wrap: wrap;
+        color: #{map-get($card, color)};
+    
+        font: 1.6rem/1 #{map-get($card, font-name)}, sans-serif;
+    
+        h2 {
+            color: #{map-get($card, title-color)};
+            font: 2.3em/1 #{map-get($card, title-font-name)}, sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 0.25em;
+        }
+    
+        ul {
+            margin: .5em 0 .5em 1em;
+        }
+    
+        &__copy {
+            font-size: 1.6rem;
+            font-weight: bold;
+            line-height: 1.45;
+        }
+    
+        &__arp {
+            width: 100%;
+            background: transparent;
+            text-align: center;
+        }
+    
+        &__offer {
+            display: block;
+            font-family: #{map-get($card, offer-font-name)}, sans-serif;
+            text-transform: uppercase;
+    
+            em {
+                display: block;
+                font: 1.9em #{map-get($card, price-font-name)}, sans-serif;
+            }
+        }
+    
+        &__price {
+            font-size: 1.3em;
+        }
+    
+        &__item {
+            flex: 0 1 200px;
+        }
+    
+        &__media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 26em;
+    
+            img {
+                max-width: 100%;
+                width: auto;
+            }
+        }
+
+            &__link,
+            &__link:link,
+            &__link:visited {
+                color: #0e529e;
+                font-size: 1.2rem;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+    
+        &--contain {
+            margin: 1rem 0.75rem;
+            border: 1px solid #909090;
+    
+            > #{$this}__item {
+                margin: 0 0.5em;
+            }
+    
+            > #{$this}__content {
+                flex: 1;
+            }
+        }
+    
+        &--cart {
+            align-items: flex-end;
+    
+            > #{$this}__item {
+                margin: 1rem 0;
+            }
+    
+            > #{$this}__cart {
+                flex-basis: auto;
+                margin-right: 2rem;
+            }
+    
+            > #{$this}__order {
+                flex-basis: 14em;
+            }
+        }
+
+        &--mini {
+            #{$this}__media {
+                flex: 0 1 11em;
+                margin-right: 1em;
+            }
+        
+            > #{$this}__content {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+        
+            #{$this}__copy {
+                flex: 1;
+        
+                > strong {
+                    color: #{map-get($card, copy-strong-color)};
+                    display: block;
+                }
+            }
+        
+            #{$this}__ad {
+                flex: 1;
+                text-align: center;
+            }
+        
+            #{$this}--cart {
+                justify-content: flex-end;
+            }
+        
+            #{$this}__order {
+                flex-basis: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+
+                .btn--card {
+                    margin: 0 2rem;
+                }
+            }
+        }
+
+        @content;
+    }
+}
+
+@mixin dtm-card {
+    .dtm {
+        &__in {
+
+            .card {
+                &__copy {
+                    ul, p {
+                        font-size: inherit;
+                    }
+                }
+            }
+
+            &--mv {
+                @include portrait {
+                    .card {
+                        $this: &;
+            
+                        font-size: 1.4rem;
+            
+                        &--cart {
+                            text-align: center;
+                            justify-content: center;   
+            
+                            > .card__cart {
+                                margin-right: 0;
+                            }
+                        }
+            
+                        &__offer {
+                            text-align: center;
+                        }
+            
+                        &__price {
+                            display: block;
+                        }
+            
+                        &--mini {
+                            .card__media {
+                                flex: 0.3 1 3em;
+                            }
+            
+                            .card__copy {
+                                font-size: 1.3rem;
+                            }
+            
+                            .card--cart {
+                                flex-direction: column;
+                                align-items: center;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+                @include portrait-sm {
+                    .card {
+                        &--mini {
+                            .card__media {
+                                flex: 0.75;
+                                margin: auto auto 1em;
+                            }
+            
+                            .card__copy {
+                                flex: 1 1 100%;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            
+                @include landscape {
+                    .card {
+                        font-size: 1.2rem;
+            
+                        &--contain {
+                            flex-wrap: nowrap;
+                        }
+            
+                        &__media {
+                            flex-basis: 13em;
+                            align-items: flex-start;
+                        }
+            
+                        &--mini {
+                            .card__media {
+                                flex: 0.1 1 9em;
+                            }
+            
+                            .card__copy {
+                                flex: 1;
+                            }
+                        }
+                    }
+                }
+            
+                .card {
+                    margin: 1rem 0;
+            
+                    p, ul {
+                        font-size: inherit;
+                        line-height: inherit;
+                    }
+
+                    &--contain .card__content {
+                        margin: 1em; 
+                    }
+            
+                    &--mini {
+                        hr {
+                            flex: 1 1 100%;
+                        }
+                    }
+
+                    &__link-image {
+                        max-width: 5em;
+                    }
+                }
+            }
+        }
+    }
+}

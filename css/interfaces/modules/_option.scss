@@ -1,0 +1,82 @@
+@mixin option {
+    .option {
+        $this: &;
+    
+        display: block;
+        background: #ffe372;
+        margin: 1rem .75rem;
+        padding: 1em;
+        font-size: 1.6rem;
+    
+        display: flex;
+        align-items: flex-start;
+    
+        &__form {
+            flex: 0 0 2em;
+        }
+    
+        &__input {
+            width: 1.25em;
+            height: 1.25em;
+            margin-top: .75em;
+        }
+    
+        &__text {
+            flex: 1;
+            font-size: 1.2em;
+            text-align: center;
+    
+            em {
+                color: #c92e34;
+                font-size: 1.4em;
+            }
+    
+            small {
+                display: block;
+                font-size: .65em;
+            }
+        }
+    
+        &--primary {
+            background: #c9e8ff;
+    
+            #{$this}__text {
+                font-size: 1.4rem;
+                text-align: left;
+            }
+        }
+    }
+}
+
+@mixin optin {
+    .optin {
+        display: flex;
+        flex-wrap: wrap;
+    
+        &__item {
+            flex: 1 1 300px;
+        }
+    }
+}
+
+@mixin dtm-option {
+    .dtm {
+        &__in {
+            &--mv {
+                .option {
+                    font-size: 1.2rem;
+                    margin: 1rem 0;
+            
+                    &__text {
+                        text-align: left;
+            
+                        em {
+                            display: block;
+                            font-size: 1.3em;
+                        }   
+                    }
+                }
+            }
+        }
+    }
+}

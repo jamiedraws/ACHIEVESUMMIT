@@ -1,0 +1,77 @@
+@import "../utilities/extend";
+@import "../utilities/media-queries";
+
+@mixin banner ( $banner : () ) {
+	$banner: extend(
+		(
+			background: #252525,
+			font-family: Impact
+		), $banner
+	);
+
+	$bannerBackground: map-get($banner, background);
+	$fontFamily: map-get($banner, font-family);
+
+	.banner {
+		background: $bannerBackground;
+		color: white;
+		text-align: center;
+		padding: 1rem;
+		font: 2.2rem #{$fontFamily}, sans-serif;
+		width: 80%;
+		margin: 1rem auto;
+		position: relative;
+		&--ribbon::before,
+		&--ribbon::after,
+		&--ribbon > div::before,
+		&--ribbon > div::after {
+				content: "";
+				position: absolute;
+				width: 1em;
+				border-style: solid;
+		}
+		&--ribbon::before,
+		&--ribbon > div::before {
+				left: -1.5em;
+		}
+		&--ribbon::after,
+		&--ribbon > div::after {
+				right: -1.5em;
+		}
+		&--ribbon::before {
+				border-color: transparent $bannerBackground transparent transparent;
+				border-width: 1em 0.5em 0 0;
+				bottom: 0;
+		}
+		&--ribbon::after {
+				border-color: transparent  transparent transparent $bannerBackground;
+				border-width: 1em 0 0 0.5em;
+				bottom: 0;
+		}
+		&--ribbon > div::before {
+				border-color: transparent $bannerBackground transparent transparent;
+				border-width: 0 0.5em 1em 0;
+				top: 0;
+		}
+		&--ribbon > div::after {
+				border-color: transparent  transparent transparent $bannerBackground;
+				border-width: 0 0 1em 0.5em;
+				top: 0;
+		}
+	}
+}
+
+@mixin dtm-banner {
+	.dtm {
+		&__in {
+			&--mv {
+				@include portrait {
+					.banner {
+						padding: 0.5rem;
+						font-size: 1.7rem;
+					}
+				}
+			}
+		}
+	}
+}

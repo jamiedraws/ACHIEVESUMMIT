@@ -1,0 +1,51 @@
+.print-ticket {
+  font: 1.3rem/1.45 niveau-grotesk, sans-serif;
+}
+.print-ticket__group {
+  display: flex;
+  flex-wrap: wrap;
+}
+.print-ticket__group--border {
+  border: 0.8em solid black;
+  align-items: center;
+  margin-bottom: 1em;
+  page-break-before: always;
+}
+.print-ticket__group--border > .print-ticket__item:not(:last-child) {
+  border-right: 0.8em solid black;
+}
+.print-ticket__item {
+  flex: 1 1 auto;
+  padding: 1em;
+}
+.print-ticket__entry {
+  margin-bottom: 1em;
+  font-size: 1.3em;
+}
+.print-ticket__entry > strong {
+  text-transform: uppercase;
+}
+.print-ticket__entry > span {
+  display: block;
+}
+.print-ticket__logo {
+  width: 160pt;
+  margin: 0 auto;
+}
+
+.dtm__in--dv .l-outer__in {
+  max-width: 900px;
+}
+
+.dtm__in--mv .print-ticket {
+  font-size: 1.5vw;
+}
+.dtm__in--mv .print-ticket__logo {
+  width: 15em;
+}
+
+.dtm__in .c-ticket--horz .icon-ticket {
+  font-size: 4em;
+}
+
+/*# sourceMappingURL=print-ticket.css.map */

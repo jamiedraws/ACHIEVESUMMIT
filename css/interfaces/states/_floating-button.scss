@@ -1,0 +1,21 @@
+@mixin floating-button {
+    .handle-cart-btn {
+        position: fixed;
+        bottom: 1em;
+        right: 1em;
+        z-index: 10;
+        box-shadow: 0 0 .5em rgba(0, 0, 0, 0.6);
+        transition: opacity .3s ease-in-out;
+        opacity: 1;
+        visibility: visible;
+    
+        &--hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+    
+        @media all and (max-width: 1400px) {
+            left: 1em;
+        }
+    }
+}

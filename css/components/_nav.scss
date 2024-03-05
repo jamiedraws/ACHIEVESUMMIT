@@ -1,0 +1,402 @@
+@import "../utils/extend";
+
+@mixin toggle-visibility () {
+    @-webkit-keyframes toggle-visibility {
+        from {
+            visibility: visible;
+            pointer-events: none;
+        }
+    
+        to {
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+    
+    @keyframes toggle-visibility {
+        from {
+            visibility: visible;
+            pointer-events: none;
+        }
+    
+        to {
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+}
+
+@include toggle-visibility;
+
+@mixin nav ( $conf : () ) {
+    $conf : extend(
+        (
+            select : '.nav',
+            item : '&__list > a',
+            vw : 900px
+        ), $conf
+    );
+
+    #{map-get($conf, select)} {
+        z-index: 3;
+        font-size: 1.8rem;
+        top: 0;
+
+        &__pane,
+        &__underlay {
+            top: 0;
+            bottom: 0;
+        }
+    
+        &,
+        &__pane,
+        &__underlay,
+        &__drop__group {
+            left: 0;
+            right: 0;
+        }
+
+        &__title {
+            align-self: center;
+            padding: 0 1em;
+        }
+    
+        &__pane {
+            border-color: hsla(0, 0%, 40%, 1);
+            background: hsla(0, 0%, 100%, 1);
+        }
+    
+        &__pane,
+        &__underlay {
+            height: auto;
+        }
+    
+        &__underlay {
+            will-change: opacity;
+            content: '';
+            pointer-events: none;
+            -webkit-transition: opacity .3s cubic-bezier(0,0,.31,1);
+            transition: opacity .3s cubic-bezier(0,0,.31,1);
+            background: hsla(0, 0%, 100%, 0.8);
+        }
+    
+        &__underlay,
+        &__toggle,
+        &__drop__group {
+            opacity: 0;
+        }
+    
+        &__underlay,
+        &__drop__group {
+            box-sizing: border-box;
+            width: 100%;
+        }
+    
+        &__title,
+        &__group,
+        &__menu,
+        &__menu--scroll {
+            display: flex;
+        }
+    
+        &__pane,
+        &__menu--scroll {
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+    
+        &__menu--scroll::-webkit-scrollbar {
+            display: none;
+            width: 0.25em;
+            height: 0.25em;
+            background: hsla(0, 0%, 84%, 1);
+        }
+
+        &__menu--scroll:hover::-webkit-scrollbar {
+            display: block;
+        }
+    
+        &__menu--scroll::-webkit-scrollbar-thumb {
+            background: hsla(0, 0%, 0%, 1);
+        }
+    
+        &__group {
+            flex-wrap: nowrap;
+        }
+    
+        &__title,
+        &__group,
+        &__menu {
+            justify-content: space-between;
+        }
+    
+        &__list {
+            flex: 1 1 auto;
+        }
+
+        &__drop__group,
+        &__drop__toggle[aria-expanded="true"] {
+            background: hsla(0, 0%, 90%, 1);
+        }
+    
+        &__drop__group {
+            -webkit-animation: toggle-visibility .3s step-end forwards;
+            animation: toggle-visibility .3s step-end forwards;
+            position: absolute;
+            z-index: 100;
+        }
+
+        &__drop__toggle,
+        &__drop {
+            width: 100%;
+        }
+
+        &__drop__toggle {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font: inherit;
+            border: inherit;
+            background: inherit;
+            color: inherit;
+        }
+    
+        &__toggle {
+            position: absolute;
+        }
+    
+        &__label {
+            width: 3.5em;
+            padding: 0.7em;
+            cursor: pointer;
+            border-color: hsla(0, 0%, 0%, 1);
+            position: relative;
+            z-index: 3;
+            transform: scale(0.75);
+            will-change: transform;
+        }
+    
+        &__label,
+        &__label::before,
+        &__label::after,
+        &__label span {
+            display: block;
+        }
+    
+        &__label::before,
+        &__label::after,
+        &__label span {
+            content: '';
+            border: 0.075em solid;
+            border-color: inherit;
+            -webkit-transform-origin: left;
+            transform-origin: left;
+        }
+    
+        &__label::before,
+        &__label::after {
+            transition: transform .3s cubic-bezier(0,0,.31,1);
+        }
+    
+        &__drop__group,
+        &__label span {
+            -webkit-transition:
+                opacity .3s cubic-bezier(0,0,.31,1),
+                -webkit-transform .3s cubic-bezier(0,0,.31,1);
+            transition:
+                opacity .3s cubic-bezier(0,0,.31,1),
+                transform .3s cubic-bezier(0,0,.31,1);
+        }
+    
+        &__label::before {
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+    
+        &__label::after {
+            -webkit-transform: scaleX(0.6);
+            transform: scaleX(0.6);
+        }
+    
+        &__label span {
+            margin: 0.45em 0;
+            -webkit-transform: scaleX(0.85);
+            transform: scaleX(0.85);
+        }
+    
+        &__toggle:checked ~ &__label::before,
+        &__toggle:checked ~ &__label::after {
+            transform-origin: center;
+        }
+    
+        &__toggle:checked ~ &__label::before {
+            transform: scaleX(1) rotateZ(45deg) translate(0.125em, .7em);
+        }
+    
+        &__toggle:checked ~ &__label::after {
+            transform: scaleX(1) rotateZ(-45deg) translate(0.175em, -0.7em);
+        }
+    
+        &__toggle:checked ~ &__label span {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    
+        &__toggle:checked ~ &__pane,
+        & [aria-expanded="true"] ~ &__drop__group {
+            -webkit-animation: none;
+            animation: none;
+            -webkit-transform: translate(0);
+            transform: translate(0);
+        }
+
+        &__drop__toggle[aria-expanded="true"]:focus-within ~ &__drop__group {
+            -webkit-animation: none;
+            animation: none;
+            -webkit-transform: translate(0);
+            transform: translate(0);
+        }
+    
+        &__toggle:checked ~ &__pane,
+        &__toggle:checked ~ &__underlay,
+        & [aria-expanded="true"] ~ &__drop__group,
+        &__drop__toggle[aria-expanded="true"]::before {
+            opacity: 1;
+        }
+
+        &__drop__toggle[aria-expanded="true"]:focus-within ~ &__drop__group {
+            opacity: 1;
+        }
+    
+        &__toggle:checked ~ &__underlay {
+            pointer-events: auto;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:focus,
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    #{map-get($conf, select)} {
+        @content;
+    }
+
+    @media all and ( max-width : #{map-get($conf, vw)} ) {
+        #{map-get($conf, select)} {
+            &__pane,
+            &__underlay {
+                position: fixed;
+            }
+        
+            &__pane {
+                width: 75vw;
+                z-index: 3;
+                box-shadow: 0 0 0.3em hsla(0, 0%, 0%, 0.3);
+                will-change: opacity, transform;
+                opacity: 0;
+                overflow-y: auto;
+                -webkit-animation: toggle-visibility .3s step-end forwards;
+                animation: toggle-visibility .3s step-end forwards;
+                -webkit-transition:
+                    opacity .3s cubic-bezier(0,0,.31,1),
+                    -webkit-transform .3s cubic-bezier(0,0,.31,1);
+                transition:
+                    opacity .3s cubic-bezier(0,0,.31,1),
+                    transform .3s cubic-bezier(0,0,.31,1);
+            }
+        
+            &__pane, 
+            &__drop__group {
+                -webkit-transform: translateX(-103%);
+                transform: translateX(-103%);
+            }
+        
+            &__group,
+            &__menu--scroll {
+                flex-wrap: wrap;
+            }
+        
+            &__title,
+            &__group,
+            &__menu,
+            &__menu--scroll,
+            &__list {
+                width: 100%;
+                flex: 1 1 100%;
+            }
+
+            &__list {
+                border-top: 0.03em solid currentColor;
+            }
+
+            #{map-get($conf, item)},
+            &__drop > &__drop__toggle,
+            &__drop {
+                flex: 1 1 100%;
+                text-align: left;
+                justify-content: flex-start;
+            }
+        }
+    }
+
+    @media all and ( min-width : #{map-get($conf, vw)} ) {
+        #{map-get($conf, select)} {
+            &,
+            #{map-get($conf, item)} {
+                text-align: center;
+            }
+        
+            &__label {
+                display: none;
+            }
+        
+            &__menu--scroll &__list {
+                flex-wrap: nowrap;
+                
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                justify-content: flex-end;
+                align-items: center;
+            }
+        
+            &__menu,
+            &__group {
+                flex: 1 1;
+            }
+        
+            &__drop:hover > &__drop__group {
+                -webkit-animation: none;
+                animation: none;
+                -webkit-transform: translate(0);
+                transform: translate(0);
+                opacity: 1;
+            }
+        
+            &__drop__group {
+                -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+            }
+        
+            &__menu-scroll {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+        
+            &__drop__toggle {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            #{map-get($conf, item)},
+            &__drop {
+                justify-content: center;
+            }
+        }
+    }
+}

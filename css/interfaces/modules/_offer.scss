@@ -1,0 +1,112 @@
+@import "../utilities/extend";
+@import "../utilities/media-queries";
+
+@mixin offer( $offer : () ) {
+    $offer: extend(
+        (
+            color: #252525,
+            font-name: 'Helvetica',
+            standfirst-font-name: 'Helvetica'
+        ), $offer
+    );
+
+    .offer {
+        $this: &;
+    
+        &--product {
+            display: inline-block;
+    
+            font: 1.5rem/1 #{map-get($offer, font-name)}, sans-serif;
+            text-align: center;
+    
+            #{$this}__txt {
+                font-family: #{map-get($offer, standfirst-font-name)};
+                font-size: 1em;
+            }
+    
+            #{$this}__price {
+                letter-spacing: -3px;
+            }
+    
+            #{$this}__txt + #{$this}__price {
+                margin-top: .5em;
+            }
+    
+            #{$this}__currency,
+            #{$this}__cent {
+                font-size: 2.5em;
+            }
+    
+            #{$this}__amt {
+                line-height: .9;
+                letter-spacing: -3px;
+            }
+    
+            #{$this}__cent {
+                letter-spacing: 0;
+            }
+        }
+
+        &__txt {
+            color: currentColor;
+        }
+
+        &--primary {
+            #{$this}__txt {
+                color: #{map-get($offer, color)};
+            }
+        }
+    
+        &--mini {
+            font-size: .95rem;
+            text-transform: uppercase;
+        }
+    }
+}
+
+@mixin dtm-offer {
+    .dtm {
+        &__in {
+            &--mv {
+
+                .offer {
+                    $this: &;
+                    
+                    @include portrait {
+                        &--product {
+                            font-size: 1.1rem;
+                        }
+                  
+                        &__desc {
+                            max-width: 18rem;
+                            margin: 0.5rem auto;
+                            font-size: 0.6em;
+                        }   
+                    }
+
+                    &--product {
+                        .offer__price {
+                            letter-spacing: 0px;
+                        }
+                    }
+
+                    @include landscape {
+                        &--mini {
+                            font-size: .75rem;
+
+                            .offer__amt {
+                                font-size: 3.5em;
+                            }
+                        }
+                    }
+
+                    @include landscape-lg {
+                        &--mini {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

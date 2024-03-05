@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Avenir Next';
+    font-display: swap;
+    src: url(/Shared/webfonts/avenir-next/regular/AvenirNext-Regular.woff2) format('woff2'),
+        url(/Shared/webfonts/avenir-next/regular/AvenirNext-Regular.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Avenir Next Bold';
+    font-display: swap;
+    src: url(/Shared/webfonts/avenir-next/bold/AvenirNext-Bold.woff2) format('woff2'),
+        url(/Shared/webfonts/avenir-next/bold/AvenirNext-Bold.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Avenir Next Demi Bold';
+    font-display: swap;
+    src: url(/Shared/webfonts/avenir-next/demi-bold/AvenirNext-DemiBold.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'DIN Bold';
+    font-display: swap;
+    src: url(/Shared/webfonts/din/bold/DIN-Bold.woff) format('woff');
+}
+
+$colors: (
+    first: #31aeb1,
+    second: #2363ad,
+    third: #d2eaff,
+    fourth: #636363
+);
+
+$primary-fonts: (
+    regular: 'Avenir Next',
+    demi-bold: 'Avenir Next Demi Bold',
+    bold: 'Avenir Next Bold'
+);
+
+$secondary-fonts: (
+    bold: 'DIN Bold',
+    bold-cd: 'DIN Condensed Bold'
+);

@@ -1,0 +1,62 @@
+@import "config/default";
+@import "interfaces/offer";
+
+@include header;
+@include dtm-header;
+
+@include nav;
+@include dtm-nav;
+
+@include bundle(
+    (
+        font-name: map-get($primary-fonts, demi-bold)
+    )
+);
+@include dtm-bundle;
+
+
+
+@include banner(
+    (
+        background: map-get($colors, first),
+        font-family: map-get($secondary-fonts, bold)
+    )
+);
+@include dtm-banner;
+
+
+
+
+
+@include order(
+    (
+        foreground: map-get($colors, second)
+    )
+);
+@include dtm-order(
+    (
+        foreground: map-get($colors, second)
+    )
+);
+
+
+
+
+
+@include offer(
+    (
+        color: map-get($colors, fourth),
+        font-name: map-get($primary-fonts, bold),
+        standfirst-font-name: map-get($primary-fonts, demi-bold)
+    )
+);
+@include dtm-offer;
+
+
+
+@include button--rect;
+
+@include scroll;
+@include dtm-scroll;
+
+@include hide-order-buttons;

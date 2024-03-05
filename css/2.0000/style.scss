@@ -1,0 +1,1627 @@
+@import "../models/colors";
+@import "../models/fonts";
+
+@import "../interfaces/ui";
+@import "../interfaces/form";
+@import "../interfaces/copy";
+
+$colors: $colors-theme;
+
+/* -----------------------------------------------------
+layout
+----------------------------------------------------- */
+@include for-template {
+    font: 16px/1.45 #{map-get($fonts, first)}, Helvetica, sans-serif;
+}
+
+html {
+    background: #{map-get($colors-default, second)};
+    color: #{map-get($colors-default, first)};
+    font-size: 62.8%;
+    scroll-behavior: smooth;
+}
+
+.arp {
+    display: block;
+    overflow: hidden;
+} 
+
+.arp[data-src-iframe] {
+    display: inline-block;
+
+    iframe {
+        display: block;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+}
+
+@media all and (max-width: 400px) {
+    .\@mv {
+        font-size: 60.8%;
+    }
+}
+
+@include for-mobile {
+    background: none;
+    color: inherit;
+}
+
+.arp--logo-compact {
+    right: 0.5em;
+}
+
+.dtm--front .dtm__in--dv .arp--logo-compact {
+    opacity: 0;
+    transform: translateX(-10%); 
+}
+
+@include for-desktop {
+    @include view(1100px) {
+        min-width: 1500px;
+        padding: 4em 3em;
+
+        &--header {
+            padding: 1em 0;
+            position: sticky;
+            top: 0;
+        
+            @supports (display: flex) {
+                .arp--logo {
+                    transform: translateY(-50%);
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+@include for-desktop {
+    @supports (display: flex) {
+    .transition {
+        &--hero {
+            .arp--logo {
+                transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+                transform: translate(0);
+                opacity: 1;
+            }
+
+            .arp--logo-compact {
+                opacity: 0;
+                transform: translateX(-10%);
+            }
+        }
+    
+        &--alternate {
+            .arp--logo {
+                opacity: 0;
+                transform: translateY(-50%);
+            }
+    
+            .arp--logo-compact {
+                transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+                opacity: 1;
+                transform: translate(0);
+            }
+        }
+    }}
+}    
+
+
+@include nav {
+    text-transform: capitalize;
+    
+    &__title,
+    a {
+        padding: 1em;
+    }
+};
+
+@include for-desktop {
+    .nav {
+        &__title {
+            width: 247px;
+            padding: 0;
+            position: relative;
+        }
+
+        .arp--logo::after {
+            content: "";
+            display: block;
+            background: white;
+            position: absolute;
+            top: auto;
+            width: 10em;
+            height: 1em;
+            bottom: 1em;
+            opacity: 1;
+            margin: auto;
+            animation: none;
+            left: 0;
+            border-radius: 100%;
+            right: 0;
+            z-index: -1;
+            box-shadow: 0 0 1em 1em white, 0 0 3em 2em white, 0 0 6em white, 0 0 9em white;
+        }
+
+        .arp--logo {
+            font-size: 1.5rem;
+            position: absolute;
+            top: -1em;
+            overflow: visible;
+        }
+    }
+}
+
+@include for-mobile {
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .arp--logo {
+            display: none;
+        }
+
+        &__logo {
+            width: 10em;
+            padding: 0.5em 0.75em;
+        }
+    }
+}
+
+.footer {
+    font-size: 1.3rem;
+    text-align: center;
+
+    p {
+        margin-bottom: 1em;
+    }
+}
+
+/* -----------------------------------------------------
+.group 
+----------------------------------------------------- */
+@include group {
+    &__logo {
+        flex: 0 0 220px;
+        position: relative;
+
+        .arp--logo {
+            position: absolute;
+        }
+    }
+
+    &__nav {
+        text-align: right;
+        text-transform: capitalize;
+        font-size: 1.8rem;
+        font-weight: 500;
+        
+        a {
+            text-decoration: none;
+            padding: 0.5em;
+
+            &:focus,
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &--logos {
+        justify-content: space-around;
+        align-items: center;
+        max-width: 1500px;
+        margin: auto;
+    }
+
+    &--hero {
+        align-items: flex-end;
+        color: black;
+    }
+
+    &--hero &__item {
+        text-align: center;
+    }
+
+    &__item--seminar {
+        align-self: flex-start;
+    }
+
+    &__item--speaker-img {
+        flex: 0 1 374px;
+        margin-left: 2em;
+    }
+};
+
+@include for-desktop {
+    .group {
+        &--logos {
+            margin-top: 4em;
+        }
+    
+        &--seminar &__item:not(:last-child) {
+            padding-right: 1em;
+        }
+
+        &--seminar &__item:not(:first-child) {
+            padding-left: 1em;
+        }
+
+        &__item--seminar {
+            margin-top: 8em;
+        }
+
+        &--hero {
+            position: relative;
+        }
+    }
+}
+
+@include for-mobile {
+    .group {
+        $this: ".group";
+
+        &__item--seminar {
+            padding: 1em;
+           
+            @include portrait {
+                 background: white;
+            }
+        }
+
+        &--seminar .group__item {
+            @include portrait {
+                flex: 1 1 100%;
+
+                &:not(:last-child) {
+                    margin-bottom: 2em;
+                }
+            }
+
+            @include landscape {
+                &:first-child {
+                    padding-right: 1em;
+                }
+            }
+        }
+
+        &--hero .group__item {
+            @include portrait {
+                flex: 1 1 100%;
+            }
+        }
+
+        @include portrait {
+            &--hero .group__item--hero {
+                order: -1;
+                max-width: 30vh;
+                margin: 0 auto 0 0;
+            }
+
+            &--content {
+                margin-top: -2em;
+
+                #{$this}__item {
+                    position: relative;
+                    padding-top: 2em;
+                }
+            }
+        }
+
+        @include portrait {
+            &__item--event {
+                order: -1;
+                margin-bottom: 4em;
+            }
+        }
+
+        &--logos {
+            picture {
+                flex: 0 0 4em;
+                margin: 0.5em;
+            }
+        }
+
+        &__item--speaker-img {
+            margin: 0 auto;
+        }
+    }
+}
+
+@include for-desktop {
+    .group {
+        $gap: 2.5em;
+
+        &--content {
+            justify-content: space-around;
+        }
+
+        &--content .group__item:not(:last-child) {
+            padding-right: #{$gap};
+        }
+
+        &--content .group__item:not(:first-child) {
+            padding-left: #{$gap};
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.register-button
+----------------------------------------------------- */
+@include for-template {
+    .button {
+        display: inline-block;
+
+        @include box;
+        border-color: #{map-get($colors, second)};
+
+        & {
+            background: #{map-get($colors, second)};
+            color: #{map-get($colors-default, second)};
+            transition: background .3s ease-in-out, color .3s ease-in-out;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+                background: #{map-get($colors-default, second)};
+                color: #{map-get($colors, second)};
+                text-decoration: none;
+            }
+        }
+
+        &--oos {
+            cursor: unset;
+            font-weight: 800;
+            transition: none;
+            pointer-events: none;
+
+            &,
+            &:hover,
+            &:focus {
+                background: #ededed;
+                color: red;
+            }
+        }
+
+        &--outline {
+            background: transparent;
+            color: #{map-get($colors-default, first)};
+            border-color: currentColor;
+        }
+    }
+}
+
+@include for-mobile {
+    .button {
+        font-size: 1em;
+
+        @include landscape {
+            font-size: 0.8em;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.copy
+----------------------------------------------------- */
+@include copy(
+    (
+        font: map-get($fonts, first),
+        color: map-get($colors, first)
+    )
+) {
+    h2 {
+        color: #{map-get($colors, first)};
+    }
+
+    strong {
+        color: #{map-get($colors, second)};
+    }
+
+    a {
+        color: #{map-get($colors, first)};
+    }
+
+    a[href^="tel"] {
+        display: block;
+    }
+
+    &--speaker {
+        font-size: 2rem;
+
+        h2 {
+            font-size: 2.75em;
+            font-weight: 900;
+        }
+
+        h3 {
+            font-size: 2.25em;
+            margin-bottom: 0.35em;
+        }
+
+        strong {
+            color: inherit;
+        }
+    }
+
+    &__desc {
+        margin-bottom: 1em;
+    }
+
+    .button + &--bar {
+        margin-top: 1em;
+    }
+
+    &__bar {
+        font-size: 3rem;
+        text-align: center;
+        font-weight: bold;
+        background: #{map-get($colors, first)};
+        color: #{map-get($colors, third)};
+
+        padding: 0.5em;
+        
+        strong {
+            color: currentColor;
+            text-transform: uppercase;
+        }
+    }
+
+    &__list {
+        margin: 3rem;
+        list-style: none; 
+
+        li {
+            padding: 0 0 0.5em;
+            position: relative;
+
+            &::before {
+                content: "";
+                box-sizing: border-box;
+                width: 0.4em;
+                height: 0.4em;
+                border-radius: 100%;
+                background: #f84100;
+                position: absolute;
+                left: -1em;
+                top: 0.40em;
+            }
+        }
+    }
+};
+
+@include for-mobile {
+    .copy {
+        font-size: 1.8rem;
+
+        h2 {
+            font-size: 3.5rem;
+        }
+
+        &--speaker {
+            h2 {
+                font-size: 3.5rem;
+            }
+
+            h3 {
+                font-size: 2.75rem;
+            }
+        }
+
+        nav a {
+            margin: 0.25em 0;
+        }
+
+        &__bar {
+            font-size: 2rem;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.view
+----------------------------------------------------- */
+.view {
+    position: relative;
+    background: white;
+
+    &--bg {
+        background: transparent;
+    }
+
+    &__bg {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+
+        > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__anchor {
+        position: absolute;
+        top: 0;
+    }
+
+    &--header {
+        background: #{map-get($colors-default, second)};
+        z-index: 2;
+        box-shadow: 0 0 1em rgba(0, 0, 0, .25);
+    }
+
+    &__ribbon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        max-width: 8.5em;
+        width: 100%;
+    }
+
+    &--hero &__bg {
+        background: #{map-get($colors, sixth)};
+    }
+
+    &--hero &__bg--hero {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: .2;
+        mix-blend-mode: luminosity;
+    }
+
+    &--layer {
+        z-index: 1;
+    }
+
+    &--contrast {
+        background: #{map-get($colors, first)};
+        color: #{map-get($colors-default, second)};
+
+        h2 {
+            color: currentColor;
+        }
+
+        strong {
+            color: #{map-get($colors, third)};
+        }
+    }
+
+    &--lighter &__bg {
+        background: #{map-get($colors, fourth)};
+    }
+
+    &--lighter &__bg img {
+        opacity: 0.15;
+    }
+
+    &--lighter {
+         color: #{map-get($colors, first)};
+    }
+
+    border-bottom: 5px solid #{map-get($colors-default, second)};
+}
+
+@include for-desktop {
+    .view {
+        @supports (position: sticky) {
+            &__anchor {
+                top: -100px;
+            }
+        }
+    }
+}
+
+@include for-mobile {
+    .view {
+        padding: 2em 1em;
+
+        &__bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @supports (position: sticky) {
+            &__anchor {
+                top: -53px;
+            }
+        }
+
+        &--header {
+            padding: 0;
+            position: sticky;
+            top: 0;
+            border: none;
+        }
+
+        &--tickets {
+            padding: 2em 0 0;
+        }
+
+        @include portrait {
+            &__ribbon {
+                max-width: 35vw;
+            }
+        }
+
+        @include landscape {
+            &__ribbon {
+                max-width: 7.5em;
+            }
+        }
+    }
+}
+
+@include for-template {
+    .view {
+        &--hero {
+            padding: 0;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.cards
+----------------------------------------------------- */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    blockquote {
+        flex: 1 1 40%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+
+        background: rgba(255, 255, 255, .70);
+        margin: 1em;
+        padding: 1em;
+        border-radius: 0.75em;
+        box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+        font: 1.7rem/1.25 #{map-get($fonts, first)}, sans-serif;
+        color: #{map-get($colors-default, first)};
+
+        picture {
+            margin-right: 1em;
+        }
+
+        footer {
+            display: inline;
+            font-weight: bold;
+        }
+    }
+}
+
+@include for-mobile {
+    .cards {
+        blockquote {
+            flex: 1 1 100%;
+            margin: 0.5em;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.list
+----------------------------------------------------- */
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: 1.8rem;
+
+    ul {
+        text-align: left;
+    }
+
+    > li {
+        flex: 1 1;
+        margin: 1em;
+        padding: 0;
+    }
+
+    figure {
+        margin: 0;
+        background: #{map-get($colors, fourth)};
+    }
+
+    figure + ul {
+        margin-top: 2em;
+    }
+
+    figcaption {
+        color: #{map-get($colors, first)};
+        text-transform: uppercase;
+        font-weight: 900;
+        background: #{map-get($colors-default, second)};
+        padding: .5em;
+        border: 2px solid currentColor;
+    }
+
+    &__image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10em;
+        border: solid #{map-get($colors, first)};
+        border-width: 0 2px 2px;
+    }
+
+    picture {
+        display: block;
+        width: 100%;
+    }
+
+    &--inline {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        figure {
+            flex: 0 0 240px;
+            margin-right: 1em;
+        }
+
+        h2 {
+            font-size: 3rem;
+            text-transform: capitalize;
+            color: #{map-get($colors, third)};
+        }
+
+        li {
+            padding-bottom: 0.5em;
+
+            &::before {
+                background: #{map-get($colors, third)};
+            }
+        }
+    }
+}
+
+@include for-mobile {
+    .list {
+        &__image {
+            padding: 1.5em;
+        }
+        
+        li {
+            @include portrait {
+                flex: 1 1 100%;
+            }
+
+            @include landscape {
+                flex: 1 1 40%;
+            }
+        }
+
+        figcaption {
+            font-size: 1.6rem;
+            padding: .5em 0;
+        }
+
+        &--inline {
+            @include portrait {
+                flex-wrap: wrap;
+                margin: 1em;
+
+                figure {
+                    flex: 1 1 100%;
+                    margin: 0 0 1em;
+                }
+            }   
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.ticket
+----------------------------------------------------- */
+@keyframes ticket-directive-visible {
+    from {
+        opacity: 0;
+        transform: translateY(150%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ticket-directive-invisible {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(150%);
+    }
+}
+
+@keyframes ticket-directive-demo {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);  
+    }
+    10% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+
+.ticket {
+    padding: 10px 5px;
+    margin: 2em 0;
+    background: #{map-get($colors, second)};
+    font-size: 1rem;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.75);
+    position: relative;
+    text-align: right;
+
+    picture {
+        width: 100%;
+    }
+
+    &__directive {
+        margin: 1.5em .25em 0;
+        background: white;
+        border-radius: 0.25em;
+        display: inline-flex;
+        justify-content: space-around;
+        position: relative;
+        z-index: 1;
+        font-size: 1.6rem;
+        padding: 0.5em;
+        text-align: center;
+        box-shadow: 0 0 1em #622902;
+
+        position: fixed;
+        bottom: 0.25em;
+        left: 0;
+        right: 0;
+        transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+        opacity: 0;
+        transform: translateY(150%);
+
+        @include landscape {
+            max-width: 37em;
+            margin: auto;
+        }
+    
+        picture {
+            width: 2em;
+            float: right;
+            animation: ticket-directive-demo 2s cubic-bezier(0.57, 0, 0, 1.02) infinite;
+        }
+
+        &--alert {
+            animation: ticket-directive-visible .3s ease-in-out forwards;
+        }
+
+        &--dismiss {
+            opacity: 1;
+            transform: translateY(0);
+            animation: ticket-directive-invisible .3s ease-in-out forwards;
+        }
+    }
+
+    &__cross {
+        $size: 1em;
+        background: url("data:image/svg+xml;charset=utf8,    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 612 612' preserveAspectRatio='xMidYMid'%3E        %3Cpolygon stroke='none' points='612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 306,341.411 576.521,611.397 612,575.997 341.459,306.011' fill='hsla(0deg, strip-unit(0%)%25, strip-unit(14.5098039216%)%25, 1)'/%3E    %3C/svg%3E") no-repeat center center;
+        background-size: #{$size};
+        width: #{$size};
+        height: #{$size};
+    }
+
+    &__directive-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0.75;
+        padding: 0 1em;
+        text-align: left;
+        margin: 0 0.5em;
+        border-left: 1px solid rgba(42, 42, 42, 0.68);
+    }
+
+    &__directive-close {
+        justify-content: center;
+    }
+
+    &__directive-gesture {
+        justify-content: flex-end;
+    }
+
+    &__directive-image {
+        flex: 0.2;
+        display: flex;
+        align-items: center;
+    }
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__group {
+        display: flex;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__item {
+        display: flex;
+        flex: 1;
+
+        &--info {
+            flex: 0 0 15em;
+            width: 15em;
+            align-items: flex-start;
+        }
+
+        &--options {
+            flex: 1;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__item--options &__group {
+        flex: 1;
+    }
+
+    &__divider {
+        border-top: 6px double;
+        border-color: inherit;
+        padding: 0.25em 0 0;
+    }
+
+    &__divider &__header {
+        display: flex;
+        align-items: center;
+        width: 7em;
+        margin: auto;
+    }
+
+    &__title {
+        line-height: .9;
+        font-family: #{map-get($fonts, second)}, sans-serif;
+        color: #{map-get($colors, fifth)};
+        text-transform: uppercase;
+        text-align: center;
+
+        span {
+            font-size: 2em;
+        }
+
+        span:first-child {
+            font-size: 2.9em;
+        }
+
+        span:nth-child(2) {
+            font-size: 1.9em;
+        }
+    }
+
+    &__disable {
+        color: #999999;
+    }
+
+    &__header {
+        height: 9.25em;
+    }
+
+    &__callout {
+        background: #{map-get($colors, first)};
+        color: white;
+        padding: 0.5em;
+        font-size: 0.75em;
+        flex: 1;
+        text-transform: uppercase;
+    }
+
+    &__card {
+        flex: 1 1 7em;
+        width: 7em;
+        background: #{map-get($colors-default, second)};
+        border-color: #cccccc;
+        padding: .5em;
+        margin: 5px;
+        scroll-snap-align: start;
+        text-align: center;
+        font: bold 2em/1.45 #{map-get($fonts, first)}, sans-serif;
+        box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+
+        h3 {
+            @include box;
+            font-size: .9em;
+            color: #{map-get($colors-default, second)};
+            border: none;
+            margin-bottom: 0.5em;
+        }
+
+        ul {
+            border-color: #cccccc;
+        }
+
+        &--info {
+            padding: 0 0 3em;
+            margin: 5px;
+            background: transparent;
+            border-color: #9c3204;
+            box-shadow: none;
+
+            ul {
+                border-color: inherit;
+            }
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin-top: 1em;
+    }
+
+    li {
+        border-top: 2px solid;
+        word-wrap: break-word;
+        word-break: break-word;
+        height: 4em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:last-child {
+            border-bottom: 2px solid;
+            border-color: inherit;
+        }
+
+        border-color: inherit;
+    }
+
+    &__disable {
+        picture {
+           opacity: 0.4;
+           @supports (mix-blend-mode: luminosity) {
+                mix-blend-mode: luminosity;
+           }
+        }
+    }
+
+    &__price {
+        font-size: 2.5em;
+        line-height: 1;
+    }
+
+    .button {
+        margin-top: 1em;
+        font-size: .7em;
+        display: block;
+    }
+
+    &__card--silver {
+        h3 {
+            background: #b5b0b3;
+        }
+    }
+
+    &__card--gold {
+        h3 {
+            background: #d5ad56;
+        }
+    }
+
+    &__card--vip {
+        h3 {
+            background: #db4c4c;
+        }
+    }
+
+    &__card--executive {
+        h3 {
+            background: #608acf;
+        }
+    }
+
+    &__card--platinum {
+        h3 {
+            background: #52bcc3;
+        }
+    }
+
+    &__card--diamond {
+        h3 {
+            background: #787088;
+        }
+    }
+}
+
+@include for-mobile {
+    .ticket {
+        margin: 4em 0 0;
+        padding: 2em 1em;
+
+        &__bg img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        &__card {
+            flex: 1;
+            width: auto;
+            box-shadow: none;
+            margin: 0 1vw 0 0;
+        }
+
+        &__callout {
+            font-size: 1em;
+        }
+
+        @include landscape {
+            @media all and (max-width: 800px) {
+                font-size: 2.4vh;
+            }
+
+            @media all and (min-width: 800px) {
+                font-size: 3vh;
+            }
+        }
+
+        @include portrait {
+            font-size: 1.25vh;
+
+            &__card--info {
+                margin-top: 0;
+            }
+        }
+
+        &__item--options {
+            flex: 1;
+            overflow: scroll;
+            scroll-snap-type: x mandatory;
+
+            .ticket__card {
+                flex: 1 0;
+            }
+
+            @include portrait {
+                max-width: 60vw;
+                .ticket__card {
+                    margin-right: 3vw;
+                    flex-basis: 60vw;
+                }
+
+                @media all and (min-height: 800px) {
+                    max-width: 24vh;
+                    .ticket__card {
+                        flex-basis: 24vh;
+                    }
+                }
+                              
+                @media all and (min-height: 820px) {
+                    max-width: 28vh;
+                    .ticket__card {
+                        flex-basis: 28vh;
+                    }
+                }
+            }
+
+            @include landscape {
+                max-width: 74vw;
+            }
+        }
+
+        &__item--info {
+            margin-right: 1vw;
+        }
+
+        @include landscape {
+            &__item--info {
+                flex-basis: 20vw;
+            }
+
+            &__item--options {
+                .ticket__card {
+                    flex-basis: 24vw;
+                }
+            }
+        }
+    }
+}
+
+@include for-desktop {
+    .ticket {
+        &__group {
+            flex-wrap: wrap;
+        }
+
+        &__callout {
+            margin-top: 0.75em;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.image-card
+----------------------------------------------------- */
+.image-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center; 
+
+    &__plus {
+        $size: 1.5em;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+
+        width: 1.5em;
+        height: 1.5em;
+
+        &,
+        &::before {
+            right: 0;
+            position: absolute;
+            bottom: 0;
+        }
+
+        &::before {
+            content: '';
+            transition: border-bottom-color .3s ease-in-out;
+            color: white;
+            width: 0;
+            height: 0;
+            border-bottom: #{$size} solid #{map-get($colors, first)};
+            border-left: #{$size} solid transparent;
+        }
+
+        &::after {
+            content: "+";
+            position: relative;
+            z-index: 1;
+            right: 0.15em;
+        }
+    }
+
+    &__title {
+        font: 2.5rem/1.3 #{map-get($fonts, first)}, sans-serif;
+        
+        transition: background .3s ease-in-out, color .3s ease-in-out;
+        padding: 1em;
+
+        small {
+            display: block;
+            font-size: .6em;
+        }
+    }
+
+    a {
+        border: 1px solid #{map-get($colors-default, second)};
+        text-decoration: none;
+        display: block;
+        position: relative;
+        background: #{map-get($colors, second)};
+
+        img {
+            transition: transform 350ms ease-out;
+        }
+    }
+
+    a:focus,
+    a:hover {
+        background: #{map-get($colors-default, second)};
+        color: #{map-get($colors, second)};
+
+        .image-card__plus {
+            color: #{map-get($colors-default, second)};
+        }
+        
+        .image-card__plus::before {
+            border-bottom-color: #{map-get($colors, second)};
+        }
+
+        img {
+            transform: scale(1.05);
+        }
+    }
+}
+
+@include for-desktop {
+    .image-card {
+        margin: 4em 0 -4em;
+        flex-wrap: nowrap;
+
+        a {
+            flex: 0 0 374px;
+            
+            @media all and (max-width: 1500px) {
+                //flex: 1 1 20%;
+            }
+        }
+    }
+}
+
+@include for-mobile {
+    .image-card {
+        margin: 2em -1em -2em;
+
+        a {
+            @include portrait {
+                flex: 0 1 50%;
+            }
+
+            @include landscape {
+                flex: 1 1 20%;
+            }
+        }
+
+        &__title {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.performer
+----------------------------------------------------- */
+.performer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    figure {
+        flex: 1;
+        margin: 1em;
+    }
+
+    picture {
+        border: 0.5em double #{map-get($colors-default, first)};
+        background: #{map-get($colors, sixth)};
+        border-radius: 100%;
+        margin: auto;
+    }
+
+    picture + figcaption {
+        margin-top: 1em;
+    }
+
+    figcaption {
+        font-size: 1.8rem;
+        font-weight: 600;
+
+        span {
+            display: block;
+            font-size: .9em;
+            text-transform: uppercase;
+        }
+    }
+}
+
+@include for-mobile {
+    .performer {
+        font-size: 1.6rem;
+
+        @include landscape {
+            font-size: 2.25vw;
+        }
+
+        figure {
+            margin: 0.5em;
+        }
+
+        picture {
+            width: 6em;
+        }
+
+        figcaption {
+            font-size: 1em;
+        }
+    }
+}
+
+@include for-desktop {
+    .performer {
+        figure {
+            flex: 0 0 143px;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.seminar
+----------------------------------------------------- */
+.seminar {
+    h1 {
+        font-size: 5.5rem;
+        line-height: 1;
+        text-transform: uppercase;
+        font-weight: 900;
+        color: #{map-get($colors, first)};
+
+        span {
+            display: block;
+            font-size: .8em;
+            color: black;
+        }
+
+        small {
+            text-transform: lowercase;
+        }
+    }
+
+    &__rect {
+        @include box;
+        padding: 0.25em;
+        margin: .5em 0;
+        font-size: 3rem;
+        font-weight: 600;
+        background: #{map-get($colors, second)};
+        color: #{map-get($colors-default, second)};
+        box-shadow: inset 0 0 0 3px #{map-get($colors, sixth)};
+        border-color: #{map-get($colors, second)};
+        display: block;
+        text-decoration: none;
+
+        &--alternate {
+            background: #{map-get($colors, first)};
+            border-color: #{map-get($colors, first)};
+        }
+
+        &--link {
+            transition: background .2s ease-in-out, color .2s ease-in-out;
+        }
+        
+        &--link:hover,
+        &--link:focus {
+            background: white;
+            color: #{map-get($colors, second)};
+        }
+    }
+
+    nav {
+        margin: 1em 0;
+
+        a {
+            margin: 0 0.25em;
+        }
+    }
+
+    &__desc {
+        font-weight: bold;
+        font-size: 1.25em;
+        margin: 0 auto 0.5em;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: capitalize;
+        color: currentColor;
+
+        &::before,
+        &::after {
+            content: "";
+            height: 2px;
+            flex: 1;
+            background: currentColor;
+            margin: 0 0.5em;
+        }
+    }
+}
+
+.root__link {
+    margin-bottom: 0.25em;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+@include for-desktop {
+    .seminar {
+        h1 {
+            margin-right: -2em;
+        }
+    }
+}
+
+@include for-mobile {
+    .seminar {
+        h1 {
+            font-size: 7vw;
+
+            @include landscape {
+                font-size: 7vh;
+            }
+        }
+
+        &__rect {
+            font-size: 2rem;
+        }
+
+        &__desc {
+            @include portrait {
+                color: #{map-get($colors, second)};
+
+                &::before,
+                &::after {
+                    background: #333;
+                }
+            }
+        }
+    }
+}
+
+
+/* -----------------------------------------------------
+.countdown
+----------------------------------------------------- */
+.countdown {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    font-size: 3rem;
+    font-weight: 500;
+    width: 63%;
+
+    &__item {
+        flex: 1;
+
+        small {
+            display: block;
+            font-size: .5em;
+            text-transform: uppercase;
+        }
+    }
+}
+
+/* -----------------------------------------------------
+.seating
+----------------------------------------------------- */
+.seating {
+    display: none;
+    
+    &__img {
+        width: 600px;
+    }
+}
+
+@include for-mobile {
+    .seating {
+        &__img {
+            width: 20em;
+        }
+    }
+}

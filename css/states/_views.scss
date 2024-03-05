@@ -1,0 +1,17 @@
+@mixin for-desktop {
+    .dtm__in--dv {
+        @content;
+    }
+}
+
+@mixin for-mobile {
+    .dtm__in--mv {
+        @content;
+    }
+}
+
+@mixin for-template {
+    .dtm__in {
+        @content;
+    }
+}

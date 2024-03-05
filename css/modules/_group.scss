@@ -1,0 +1,14 @@
+@mixin group {
+    $this: &;
+    
+    .group {
+        display: flex;
+        flex-wrap: wrap;
+
+        &__item {
+            flex: 1 1;
+        }
+
+        @content;
+    }
+}

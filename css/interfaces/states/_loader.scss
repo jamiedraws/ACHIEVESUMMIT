@@ -1,0 +1,24 @@
+@mixin loader {
+    .loader {
+        transition: opacity .2s ease-in-out 1s;
+    
+        &.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+    
+            .loader__animation {
+                animation-play-state: paused;
+            }
+        }
+    
+        &__animation {
+            font-size: 5rem;
+            @include svg-tailspin(
+                (
+                    iterate: 60
+                )
+            );
+            animation-play-state: running;
+        }
+    }
+}

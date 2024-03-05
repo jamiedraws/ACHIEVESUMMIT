@@ -1,0 +1,11 @@
+@mixin dtm-express-checkout {
+    .dtm {
+        &__in {
+            &--dv {
+                #paypal-button {
+                    max-width: 50%;
+                }
+            }
+        }
+    }
+}

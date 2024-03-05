@@ -1,0 +1,5 @@
+@mixin hide-order-buttons {
+    .dtm--subpage .dtm__in--mv .o-box--btn--toggle[title*=Order] {
+        display: none;
+    }
+}

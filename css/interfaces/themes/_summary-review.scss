@@ -1,0 +1,163 @@
+@mixin summary-review {
+    #orderReviewTable {
+        .c-brand--item {
+            padding: 1rem;
+            &::before {
+                display: none;
+            }
+        }   
+    }
+    
+    .c-brand--item {
+        &__group {
+            display: flex;
+            align-items: center;
+        }
+    
+        &__img {
+            display: block;
+            padding-right: 1rem;
+        }
+
+        &__text {
+            flex: 1;
+        }
+    }
+}
+
+@mixin dtm-summary-review {
+    .dtm .dtm__in--mv .c-brand--item__img {
+        margin: 0;
+    }
+}
+
+[data-sku] span {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0.35em;
+    max-width: 6em;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.dtm__in--dv [data-sku] span {
+    width: 6em;
+}
+
+@mixin sku-color ($sku, $color: black) {
+    [data-sku^="#{$sku}"] span {
+        color: white;
+        background: #{$color};
+    }
+}
+
+@include sku-color("SILVER", #b5b0b3);
+@include sku-color("GOLD", #d5ad56);
+@include sku-color("VIP", #db4c4c);
+@include sku-color("PLATINUM", #52bcc3);
+@include sku-color("DIAMOND", #787088);
+
+.dtm__in--dv {
+    .c-brand--form__table {
+        margin: 2rem;
+    }
+
+    .orderItemsTableBody {
+        [data-sku] {
+            width: 6em;
+            text-align: center;
+        }
+    }
+}
+
+.dtm__in--mv {
+    .c-brand--form__table {
+        margin: 1rem 0;
+    }
+
+    .c-brand--table {
+        tbody td[data-eflex--category-label="Item"] {
+            text-align: left;
+            @media all and (orientation: landscape) {
+                background: #4B4C4E;
+                border-color: #4B4C4E;
+            }
+        }
+    }
+}
+
+.rebuttal__group {
+    display: flex;
+    align-items: center;
+}
+
+.rebuttal__desc {
+    padding: 1rem;
+}
+
+.dtm .c-brand--box {
+    background: #00bccd;
+    border: none;
+    border-radius: 0;
+}
+
+.group--event {
+    .copy {
+        font-size: 2rem;
+
+        p {
+            font-size: inherit;
+        }
+    }
+
+    .copy__title,
+    nav {
+        display: none;
+    }
+
+    .group__item {
+        padding: 2rem;
+    }
+}
+
+.dtm__in--mv {
+    @media all and (orientation: portrait) {
+        .group__item {
+            padding: 2rem 0;
+        }
+
+        .group__item--actions {
+            flex: 1 1 100%;
+        }
+    }
+}
+
+.dtm .social__link {
+    color: #00bccd;
+    text-decoration: none;
+}
+
+.dtm__in--dv .group__item--actions {
+    flex: .6;
+}
+
+.dtm .c-brand--confirm .o-box--btn--icon {
+    background: #f84100;
+    color: white;
+    box-shadow: none;
+    border-radius: 0;
+    border: 2px solid #f84100;
+    font: 2rem/1 "niveau-grotesk", sans-serif;
+    text-transform: uppercase;
+  }
+  
+  .dtm .c-brand--confirm .o-box--btn--icon:hover,
+  .dtm .c-brand--confirm .o-box--btn--icon:focus {
+    background: white;
+    color: #f84100;
+  }
+
+.rebuttal__add-tickets {
+    text-align: center;
+}

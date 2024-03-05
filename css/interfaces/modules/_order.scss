@@ -1,0 +1,109 @@
+@import "../utilities/extend";
+@import "../utilities/media-queries";
+
+@mixin order ( $order : () ) {
+    $order: extend(
+        (
+            foreground: #252525,
+            background: #ededed
+        ), $order
+    );
+
+    .order {
+        $this: &;
+
+        display: inline-flex;
+        flex-flow: column wrap;
+        align-items: center;
+        position: relative;
+    
+        color: #{map-get($order, foreground)};
+    
+        &--row {
+            flex-direction: row;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border-radius: 1rem;
+            margin: 0;
+
+            &:not(:first-child) {
+                margin-left: 1rem;
+            }
+    
+            #{$this}__item {
+                padding: 0.5em;
+                margin: 0;
+                color: inherit;
+                a {
+                    display: flex;
+                    padding: 0.75em 1em;
+                    align-items: center;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+@mixin dtm-order ( $dtm-order : () ) {
+    $dtm-order: extend(
+        (
+            background: #ededed
+        ), $dtm-order
+    );
+
+    .dtm__in--mv {        
+        .offer {
+            &-area {
+                background: #{map-get($dtm-order, background)};
+            }
+            &-area__price {
+                .offer__group--top {
+                    margin-top: 0;
+                    z-index: 3;
+                    position: relative;
+                    background: linear-gradient(#d6edfe 0%, #d6edfe 60%, rgba(255, 255, 255, 0) 100%);
+                }
+            }
+
+
+        }
+
+        // to show the order now buttons on mobile sticky nav
+        .order {
+            &--row {
+                flex: 1 1 100px;
+
+                @include portrait {
+                    .offer--product {
+                        font-size: 0.6rem;
+                    }
+                }
+
+                .order__item {
+                    flex: 1;
+                    padding: 0.5em 0.25em;
+                    text-align: center;
+
+                    .btn {
+                        width: 100%;
+                        @include portrait {
+                            padding: 0.5em;
+                        }
+                        @include portrait-sm {
+                            font-size: 1.3rem;
+                        }
+
+                        @include landscape {
+                            font-size: 1.15rem;
+                        }
+                    }
+
+                    &:first-child {
+                        flex: 1.3;
+                    }
+                }
+            }
+        }
+    }
+}
